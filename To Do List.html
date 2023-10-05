@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="../MDB/css/bootstrap.css">
+    <link rel="stylesheet" href="../MDB/css/mdb.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <header class="bg-secondary p-2">
+            <h3 class="text-center ">TO DO LIST</h3>
+        </header>
+        <div class="form-body d-flex">
+            <input type="text" name="" id="name" class="form-control p-3 mt-3" placeholder="Enter Task....">
+            <button class="btn btn-primary" id="add">ADD</button>
+        </div>
+
+
+        <div class="ui-body mt-3" id="display">
+
+            <div class="card">
+                <div class="catd-body d-flex">
+                    <h1> diplay to do list </h1>
+                    <button class="btn btn-danger p-1" id="delete">delete</button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+
+            let taskname = document.querySelector("#name");
+            let addbtn = document.querySelector("#add");
+            let displaytag = document.querySelector("#display")
+            let deletebtn = document.querySelector("#delete");
+            let onearr = [];
+            let edit_id="";
+
+            addbtn.addEventListener('click', function () {
+                let enter = taskname.value;
+
+                if (!edit_id){
+                    //validation
+                if (enter == "") {
+                    alert('IDIOT it is an Empty String "_"')
+                }
+                else {
+                    // console.log(data);
+                    let obj = {
+                        id: new Date().getMilliseconds(),
+                        text: enter
+                    }
+                    // console.log(obj);
+                    onearr.unshift(obj);
+                    // console.log(onearr);
+                    taskname.value = "";
+                }
+            }
+
+            // editing 
+            else{
+                onearr.map((data)=>{
+                    if(data.id==edit_id)
+                    {
+                        data.text=taskname.value;
+                    }
+                    return data
+                })
+                taskname.value="";
+                edit_id= " ";
+
+            }
+                printing();
+
+            });
+
+
+            //printing
+            printing();
+            function printing() {
+                let showMsg = onearr.map((d) => {
+                    return `<div class="card">
+            <div class="card-body d-flex">
+                <h4> ${d.text}</h4>
+                <button class="btn btn-primary p-1" id="edit" onclick="editHandler(${d.id})">Edit</button> 
+            <button class="btn btn-danger p-1" id="delete" onclick="deleteHandler(${d.id})">delete</button> 
+        </div>
+        </div>`
+
+                })
+
+                let display_dup = showMsg.join('');
+                displaytag.innerHTML = display_dup;
+
+
+            }
+                //delete function
+            function deleteHandler(id) {
+                let a=onearr.filter((e)=>{
+                    return e.id!=id
+
+                })
+                onearr = a;
+                printing();
+            
+            }
+
+            //edit
+            function editHandler(id)
+            {
+            
+                let a= onearr.find((data)=>{
+
+                    return data.id==id
+                });
+                taskname.value = a.text;
+                edit_id=id;
+
+            }
+
+
+
+        </script>
+
+</body>
+
+</html>
