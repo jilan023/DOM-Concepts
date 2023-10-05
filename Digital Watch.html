@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital watch</title>
+    <link rel="stylesheet" href="../MDB/css/bootstrap.css">
+    <link rel="stylesheet" href="../MDB/css/mdb.css">
+</head>
+<body>
+    <div class="conataine mt-5">
+        <div class="row">
+            <div class="col-3 m-auto text-center">
+                <div class="card text-danger bg-light p-3 font-large">
+                    Digital Watch
+                </div>
+            <div class="card-body bg-primary text-dark">
+                <h2 class="text-white">Asia/Kolkata<h2>
+                    <h3 id="timetag">time</h3>
+                    <h3 id="datetag" class="text-warning">date</h3>
+                </div>    
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+
+        let time=document.querySelector("#timetag");
+        let date=document.querySelector("#datetag");
+       
+        function indianWatch()
+        {
+            let options={timezone:"Asia/Kolkata"};
+            let dateObj=new Date();
+            let currentTime=dateObj.toLocaleTimeString('en-US',options);
+            time.innerText=currentTime;
+            let currentdate=dateObj.toLocaleDateString('en-US',options);
+            date.innerText=currentdate;
+
+        }
+        setInterval(indianWatch,1000);
+    </script>
+    
+</body>
+</html>
