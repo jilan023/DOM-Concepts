@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital calulator</title>
+    <!-- <link rel="stylesheet" href="../MDB/css/bootstrap.css"> -->
+    <!-- <link rel="stylesheet" href="../MDB/css/mdb.css"> -->
+    <!-- Font Awesome -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
+rel="stylesheet"
+/>
+</head>
+<body>
+<div class="container m-5">
+    <div class="row m-auto">
+        <div class="col-5 text-center m-auto">
+            <div class="card  ">
+                <div class="card-head p-3 bg-warning">
+                    CALCULATOR <hr>
+                </div>
+                <div class="card-body">
+                    <div class="p-2"><input class="form-control" type="number" id="firstName"></div>
+                    <div><input  class="form-control"type="number" id="secName"></div>
+                </div>
+                <div class="card-head p-3 ">
+                    <div class="btn bg-primary text-white">
+                    <button class="bnt">+</button>
+                    <button class="bnt">-</button>
+                    <button class="bnt">*</button>
+                    <button class="bnt">/</button>
+                    <button class="bnt">%</button>
+                </div>
+                <div class="card-footer bg-secondary m-auto">
+                    <table>
+                        <tr>
+                            <td  >
+                    <input type="text" class="form-control" id="first1" >
+                </td>
+                <td>
+                  <button id="sign" class="btn btn-success">_</button>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="second2">
+                </td>
+                </tr>
+                    </table>
+                    <div class="bg-light m-2" id="res">results</div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    let number1tag=document.querySelector("#firstName");
+    let number2tag=document.querySelector("#secName");
+    let operator=document.querySelectorAll(".bnt");
+    let Result=document.querySelector("#res");
+    // console.log(operator);
+
+    operator.forEach((e,i)=>{
+        e.addEventListener('click',function()
+        {
+            let sign= operator[i].innerText;
+            // console.log(sign);
+            let total=eval(number1tag.value+sign+number2tag.value);
+            // console.log(total);
+            Result.innerText=total;
+
+           document.querySelector("#first1").value=number1tag.value;
+            document.querySelector("#second2").value=number2tag.value;
+        //    console.log(a,b);
+
+            document.querySelector("#sign").innerText=sign;
+
+        });
+
+    });
+</script>
+    
+</body>
+</html>
